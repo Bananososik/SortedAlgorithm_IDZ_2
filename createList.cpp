@@ -10,14 +10,14 @@ int main(){
     std::string Surname[10] = {"Иванов", "Петров", "Сидоров", "Смирнов", "Кузнецов", "Попов", "Васильев", "Новиков", "Фёдоров", "Морозов"};
     std::string MiddleName[10] = {"Алексеевич", "Дмитриевич", "Иванович", "Сергеевич", "Андреевич", "Максимович", "Егорович", "Владимирович", "Павлович", "Никитич"};
 
-
-    int n, c;
+    std::string n;
+    int c;
     std::cout << "Ввведите номер файла: ";
     std::cin >> n;
     std::cout << std::endl << "введите количство строк: ";
     std::cin >> c;
 
-    std::string filename = "list" + std::to_string(n) + ".txt";
+    std::string filename = "list" + n + ".txt";
     std::ofstream file1(filename);
 
 

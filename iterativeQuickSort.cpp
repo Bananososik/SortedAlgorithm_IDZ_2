@@ -20,6 +20,7 @@ struct FCs{
 struct El{
     date key1;
     FCs key2;
+    int index;
 };
 
 struct stackEl{
@@ -122,51 +123,125 @@ void iterativeQuickSort(El arr[], int size){
 }
 
 int main(){
-    El* arr = new El[1000000]; 
-    std::ifstream list("list2.txt");
+    // Обработка list10
+    {
+        El* arr = new El[1000000]; 
+        std::ifstream list10("list10.txt");
+        if(!list10.is_open()) {
+            std::cerr << "Error opening list10.txt" << std::endl;
+            return 1;
+        }
 
-    if(!list.is_open()){
-        std::cerr << "Ошибка открытия файла!" << std::endl;
+        int i = 0;
+        std::string line;
+        
+        while(std::getline(list10, line) && i < 1000000){
+            std::istringstream iss(line);
+            iss >> arr[i].key1.day >> arr[i].key1.month >> arr[i].key1.year;
+            iss >> arr[i].key2.surName >> arr[i].key2.name >> arr[i].key2.midleName;
+            arr[i].index = i + 1;  // Индекс от 1
+            i++;
+        }
+        
+        list10.close();
+        int size = i;
+
+        auto start = std::chrono::steady_clock::now();
+        iterativeQuickSort(arr, size);
+        auto end = std::chrono::steady_clock::now();
+
+        std::chrono::duration<double> elapsed = end - start;
+        std::cout << "list10 - Время затраченное на сортировку: " << elapsed.count() << " сек" << std::endl;
+
+        std::ofstream output("outputlist10_.txt");
+        for(int i = 0; i < size; i++){  
+            output << arr[i].key1.day << " " << arr[i].key1.month << " " << arr[i].key1.year << "\t" 
+                   << arr[i].key2.surName << " " << arr[i].key2.name << " " << arr[i].key2.midleName 
+                   << "\t" << arr[i].index << std::endl;  
+        }
+        output.close();
         delete[] arr;
-        return 1;
     }
 
-    int i = 0;
-    std::string line;
-    
-    while(std::getline(list, line) && i < 1000000){
-        std::istringstream iss(line);
+    // Обработка list10k
+    {
+        El* arr = new El[1000000]; 
+        std::ifstream list10k("list10k.txt");
+        if(!list10k.is_open()) {
+            std::cerr << "Error opening list10k.txt" << std::endl;
+            return 1;
+        }
+
+        int i = 0;
+        std::string line;
         
-        iss >> arr[i].key1.day 
-            >> arr[i].key1.month 
-            >> arr[i].key1.year;
+        while(std::getline(list10k, line) && i < 1000000){
+            std::istringstream iss(line);
+            iss >> arr[i].key1.day >> arr[i].key1.month >> arr[i].key1.year;
+            iss >> arr[i].key2.surName >> arr[i].key2.name >> arr[i].key2.midleName;
+            arr[i].index = i + 1;  // Индекс от 1
+            i++;
+        }
         
-        iss >> arr[i].key2.surName 
-            >> arr[i].key2.name 
-            >> arr[i].key2.midleName;
-        
-        i++;
+        list10k.close();
+        int size = i;
+
+        auto start = std::chrono::steady_clock::now();
+        iterativeQuickSort(arr, size);
+        auto end = std::chrono::steady_clock::now();
+
+        std::chrono::duration<double> elapsed = end - start;
+        std::cout << "list10k - Время затраченное на сортировку: " << elapsed.count() << " сек" << std::endl;
+
+        std::ofstream output("outputlist10k_.txt");
+        for(int i = 0; i < size; i++){  
+            output << arr[i].key1.day << " " << arr[i].key1.month << " " << arr[i].key1.year << "\t" 
+                   << arr[i].key2.surName << " " << arr[i].key2.name << " " << arr[i].key2.midleName 
+                   << "\t" << arr[i].index << std::endl;  
+        }
+        output.close();
+        delete[] arr;
     }
-    
-    list.close();
-    int size = i;
 
-    auto start = std::chrono::steady_clock::now();
-    iterativeQuickSort(arr, size);
-    auto end = std::chrono::steady_clock::now();
+    // Обработка list100k
+    {
+        El* arr = new El[1000000]; 
+        std::ifstream list100k("list100k.txt");
+        if(!list100k.is_open()) {
+            std::cerr << "Error opening list100k.txt" << std::endl;
+            return 1;
+        }
 
-    std::chrono::duration<double> elapsed = end - start;
+        int i = 0;
+        std::string line;
+        
+        while(std::getline(list100k, line) && i < 1000000){
+            std::istringstream iss(line);
+            iss >> arr[i].key1.day >> arr[i].key1.month >> arr[i].key1.year;
+            iss >> arr[i].key2.surName >> arr[i].key2.name >> arr[i].key2.midleName;
+            arr[i].index = i + 1;  // Индекс от 1
+            i++;
+        }
+        
+        list100k.close();
+        int size = i;
 
-    std::cout << "Время затраченное на сортировку: " << elapsed.count();
+        auto start = std::chrono::steady_clock::now();
+        iterativeQuickSort(arr, size);
+        auto end = std::chrono::steady_clock::now();
 
-    std::ofstream output("outputlistHUI10^7.txt");
-    for(int i = 0; i < size; i++){  
-        output << arr[i].key1.day << " " << arr[i].key1.month << " " << arr[i].key1.year << "\t" 
-               << arr[i].key2.surName << " " << arr[i].key2.name << " " << arr[i].key2.midleName << std::endl;  
+        std::chrono::duration<double> elapsed = end - start;
+        std::cout << "list100k - Время затраченное на сортировку: " << elapsed.count() << " сек" << std::endl;
+
+        std::ofstream output("outputlist100k_.txt");
+        for(int i = 0; i < size; i++){  
+            output << arr[i].key1.day << " " << arr[i].key1.month << " " << arr[i].key1.year << "\t" 
+                   << arr[i].key2.surName << " " << arr[i].key2.name << " " << arr[i].key2.midleName 
+                   << "\t" << arr[i].index << std::endl;  
+        }
+        output.close();
+        delete[] arr;
     }
-    
-    output.close();
-    delete[] arr; 
     
     return 0;
 }
