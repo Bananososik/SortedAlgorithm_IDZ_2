@@ -22,9 +22,9 @@ struct El{
 };
 
 bool keyIsBigger(El m, El key){
-    if(m.key1.year != key.key1.year) return m.key1.year < key.key1.year;
-    if(m.key1.month != key.key1.month) return m.key1.month < key.key1.month;
-    if(m.key1.day != key.key1.day) return m.key1.day < key.key1.day;
+    if(m.key1.year != key.key1.year) return m.key1.year > key.key1.year;
+    if(m.key1.month != key.key1.month) return m.key1.month > key.key1.month;
+    if(m.key1.day != key.key1.day) return m.key1.day > key.key1.day;
     
     if(m.key2.surName != key.key2.surName) return m.key2.surName < key.key2.surName;
     if(m.key2.name != key.key2.name) return m.key2.name < key.key2.name;

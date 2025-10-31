@@ -22,7 +22,7 @@ int main(){
 
 
     for(int i = 0; i < c; i++){
-        file1 << rand() % 1 + 1 << " " << rand() % 12 + 1 << " " << rand() % 25 + 2000 << "\t" << Surname[rand() % 10] << " " << Name[rand() % 10] << " " << MiddleName[rand() % 10] << std::endl;
+        file1 << rand() % 31 + 1 << " " << rand() % 12 + 1 << " " << rand() % 25 + 2000 << "\t" << Surname[rand() % 10] << " " << Name[rand() % 10] << " " << MiddleName[rand() % 10] << std::endl;
     }
 
     file1.close();
