@@ -26,9 +26,9 @@ bool keyIsBigger(El m, El key){
     if(m.key1.month != key.key1.month) return m.key1.month < key.key1.month;
     if(m.key1.day != key.key1.day) return m.key1.day < key.key1.day;
     
-    if(m.key2.surName[0] != key.key2.surName[0]) return m.key2.surName[0] < key.key2.surName[0];
-    if(m.key2.name[0] != key.key2.name[0]) return m.key2.name[0] < key.key2.name[0];
-    return m.key2.midleName[0] < key.key2.midleName[0];
+    if(m.key2.surName != key.key2.surName) return m.key2.surName < key.key2.surName;
+    if(m.key2.name != key.key2.name) return m.key2.name < key.key2.name;
+    return m.key2.midleName < key.key2.midleName;
 }
 
 
